@@ -1,0 +1,40 @@
+hr{
+    margin: 20px;
+}
+/* Mock 1 */
+button{
+    padding: 10px 20px;
+    border: 0;
+    font-size: 1rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(87, 166, 249);
+    border-radius: 5px;
+}
+button:hover{
+    background-color: rgb(0, 92, 184);
+}
+button:active{
+    outline: auto;
+    box-shadow: inset -1px -1px 2px,inset 1px 1px 2px;
+}
+/* Mock 2 */
+.derp{
+    width: 100%;
+    height: 300px;
+}
+
+.sec2{
+    padding: 0px;
+    width: 400px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: hsla(274, 3%, 73%, 0.25);
+}
+
+.img1, .img2, .img3{
+    height: 300px;
+    width: 300px;
+    border: 5px salmon solid;
+    border-radius: 10px;
+}
