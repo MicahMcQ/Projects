@@ -1,0 +1,31 @@
+1. const id = document.getElementById('container')
+2. const id = document.querySelector('#container')
+3. document.querySelectorAll('.second')
+4. document.querySelector("ol .third")  
+5. const div1 = document.querySelector('#container')
+
+div1.innerText = 'hello'
+
+6. const foot = document.querySelector('.footer')
+foot.classList.add('main')
+
+7. const foot = document.querySelector('.footer')
+foot.classList.remove('main')
+
+8. const newLi = document.createElement('li')
+
+9. newLi.innerText = 'four'
+
+10. const list = document.querySelector("ul");
+list.appendChild(newLi);
+
+11. let lists = document.querySelectorAll("ol li");
+
+for( let list of lists){
+lists.style.color = 'green' }
+
+12. const foot = document.querySelector(".footer");
+foot.remove();
+
+
+ 
