@@ -1,0 +1,43 @@
+/* #image{
+    position: absolute;
+    top: auto; left: 450px;
+    height: 500px;
+    width: 500px;
+} */
+#form{
+    border: 5px black solid;
+    left: auto;
+    top: auto;
+
+    padding: 50px;
+    margin: 0 auto
+}
+#head{
+    position: relative;
+    text-align: center;
+    margin: 0;
+    padding: 0
+}
+#innerForm{
+    margin: 0 auto;
+    display: flexbox;
+}
+
+.inputs{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button{
+    position: absolute;
+    z-index: 1;
+    right: 0;
+  }
+#results{
+
+}
