@@ -19,7 +19,7 @@ form.addEventListener('submit', function(e){
 function makeDiv(){
   const div = document.createElement('div');
   div.setAttribute('name', 'container')
-  div.innerText('penis')
+  div.innerText('Testing')
 }
 
 
