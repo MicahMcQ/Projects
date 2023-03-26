@@ -38,6 +38,7 @@ button{
     z-index: 1;
     right: 0;
   }
-#results{
-
+.final_image{
+    width: 250px;
+    height: 250px;
 }
