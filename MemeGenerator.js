@@ -13,7 +13,7 @@ form.addEventListener('submit', function(e){
     photo.value
     
   );
-  results.appendChild(newDiv)
+  results.appendChild(newMeme)
 })
 
 function makeDiv(){
@@ -25,10 +25,12 @@ function makeDiv(){
 
 function makeMeme(image){
   const meme = document.createElement('img');
+  meme.classList.add('final_image')
   meme.src = image;
   meme.setAttribute('name','true')
   return meme;
 }
+
 
 results.addEventListener('click', function(e){
   console.log(e.target)
