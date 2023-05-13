@@ -7,10 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+<form action='http://127.0.0.1:5000/convert' method="POST">    
     <h1>Currency Converter</h1>
     <hr>
+    <label for="amount">Amount:</label>
+    <input type="text" name="amount" id="amount">
     <h3>Currency to transfer from</h3>
-    <select name="currency" id="from_usd">
+    <select name="from_currency" id="from_currency">
         <option value="">--Please choose an option--</option>
         <option value="USD">US dollar</option>
         <option value="EUR">European Euro</option>
@@ -40,7 +43,7 @@
     </select>
     <br>
     <h3>Currency to transfer to</h3>
-    <select name="currency" id="from_usd">
+    <select name="to_currency" id="to_currency">
         <option value="">--Please choose an option--</option>
         <option value="USD">US dollar</option>
         <option value="EUR">European Euro</option>
@@ -68,8 +71,9 @@
         <option value="THB">Thai baht</option>
         <option value="MYR">Malaysian ringgit</option>
     </select>
-    <button type="sumit">Convert</button>
-    <hr>
+    <button>Convert</button>
+    <hr></form>
+<div>The converted amount : {{data}}</div>
 
 </body>
 </html>
