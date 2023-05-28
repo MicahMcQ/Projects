@@ -55,7 +55,7 @@ def add_playlist():
     if form.validate_on_submit():
         name = form.name.data
         desc = form.desc.data
-        playlist = Playlist(name=name, desc=description)
+        playlist = Playlist(name=name, description=desc)
 
         db.session.add(playlist)
         db.session.commit()
