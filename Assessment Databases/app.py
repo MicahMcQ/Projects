@@ -104,7 +104,7 @@ def add_song():
         name = form.name.data
         artist = form.artist.data
 
-        song = Song(title="", artist="")
+        song = Song(title=name, artist=artist)
         db.session.add(song)
         db.session.commit()
         flash(f"{song} added.")
