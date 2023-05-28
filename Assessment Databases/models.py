@@ -28,8 +28,8 @@ class PlaylistSong(db.Model):
     __tablename__ = "playlists_songs"
 
     id = Column("id", Integer, primary_key=True)
-    playlist_id = Column(Integer, ForeignKey('playlists.id'))
-    song_id = Column(Integer, ForeignKey('songs.id'))
+    playlist_id = Column(Integer, ForeignKey('playlists.playlist_id'))
+    song_id = Column(Integer, ForeignKey('songs.song_id'))
 
 # DO NOT MODIFY THIS FUNCTION
 def connect_db(app):
