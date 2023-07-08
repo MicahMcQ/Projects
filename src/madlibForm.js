@@ -3,15 +3,21 @@ import React, { useState } from "react";
 
 const Madlibs = () => { 
 
+    const Item = ({verb, noun, place, adjective}) => {
+        return (
+          <p>
+          The {noun} is {verb} while on the way to the {adjective} {place}.
+      </p>)}
+   
     const initialState = {
         verb: "",
         noun: "",
         place: "",
         adjective: "",
     }
+    const [item, setItems] = useState(initialState)
     const [formData, setFormData] = useState(initialState)
     const handelChange = e =>{
-        console.log(e.target.value);
         const { name, value } = e.target;
         setFormData(data => ({
             ...data,
@@ -21,7 +27,9 @@ const Madlibs = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormData(initialState)
-        // addItem(formData.verb, formData.noun, formData.place, formData.adjective)
+        return(
+            <div><Item/>
+       </div>)
     }
 
     return(
