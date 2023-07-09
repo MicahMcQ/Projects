@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 
-
 const Madlibs = () => { 
 
-    const Item = ({verb, noun, place, adjective}) => {
-        return (
-          <p>
-          The {noun} is {verb} while on the way to the {adjective} {place}.
-      </p>)}
-   
     const initialState = {
         verb: "",
         noun: "",
         place: "",
         adjective: "",
     }
-    const [item, setItems] = useState(initialState)
     const [formData, setFormData] = useState(initialState)
     const handelChange = e =>{
         const { name, value } = e.target;
@@ -24,14 +16,19 @@ const Madlibs = () => {
             [name]: value
         }))
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setFormData(initialState)
-        return(
-            <div><Item/>
-       </div>)
-    }
+   
+    const verb =(formData.verb)
+    const noun =(formData.noun)
+    const adjective =(formData.adjective)
+    const place =(formData.place)    
 
+const story =("The " + noun + " was " + verb + " while on a " + adjective + " trip to the magical " + place)
+   
+const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormData(initialState)
+    console.log(story)
+}
     return(
 <form onSubmit={handleSubmit}> 
 
@@ -80,5 +77,4 @@ const Madlibs = () => {
  )
 
 };
-   
    export default Madlibs;
