@@ -15,7 +15,7 @@ let out = results.map(r => ({
     }));
 
 catch (err) {
-  return next();
+  return res.json(out);
   }
 
 });
@@ -24,27 +24,3 @@ app.listen(3000, function() {
   console.log("Localhost:3000")
 });
 
-
-// ---------Test code section---------
-
-
-// app.get("/users/:username", function(req, res, next){
-//   try {
-//     const user = USERS.find(u => u.username === req.params.username);
-//     if (!user) throw new ExpressError("Not found!", 404);
-//     return res.json({ user });
-//   } catch (err) {
-//     return next(err);
-//   }
-// })
-
-
-// app.get('//:name', function(req, res) {
-//   if (req.params.name !== 'Whiskey') {
-//     return res
-//             .status(403)
-//             .json('Only Whiskey is Allowed.');
-//   }
-
-//   return res.json('Hello Whiskey!');
-// });
