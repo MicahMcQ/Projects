@@ -13,9 +13,11 @@ let out = results.map(r => ({
       name: r.data.name,
       bio: r.data.bio
     }));
-
-catch (err) {
-  return res.json(out);
+    
+return res.json(out);
+    
+  catch (err) {
+    return next(err);
   }
 
 });
