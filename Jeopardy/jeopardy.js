@@ -1,16 +1,18 @@
 class TriviaGameShow {
     constructor(element, options={}) {
        
+       //Which categories we should use (or use default is nothing provided)
        this.useCategoryIds = options.useCategoryIds || [ 1892, 4483, 88, 218]; 
-      
+   
+       //Database
        this.categories = [];
        this.clues = {};
        
-    
+       //State
        this.currentClue = null;
        this.score = 0;
        
-       
+       //Elements
        this.boardElement = element.querySelector(".board");
        this.scoreCountElement = element.querySelector(".score-count");
        this.formElement = element.querySelector("form");
@@ -24,7 +26,7 @@ class TriviaGameShow {
     }
  
     initGame() {
-    
+       //Bind event handlers
        this.boardElement.addEventListener("click", event => {
           if (event.target.dataset.clueId) {
              this.handleClueClick(event);
@@ -34,15 +36,16 @@ class TriviaGameShow {
           this.handleFormSubmit(event);
        });
        
-       
+       //Render initial state of score
        this.updateScore(0);
        
-       
+       //Kick off the category fetch
        this.fetchCategories();
     }
     
  
     fetchCategories() {      
+       //Fetch all of the data from the API
        const categories = this.useCategoryIds.map(category_id => {
           return new Promise((resolve, reject) => {
              fetch(`https://jservice.io/api/category?id=${category_id}`)
@@ -52,21 +55,27 @@ class TriviaGameShow {
           });
        });
        
+       //Sift through the data when all categories come back
        Promise.all(categories).then(results => {
           
+          //Build up our list of categories
           results.forEach((result, categoryIndex) => {
              
+             //Start with a blank category
              var category = {
                 title: result.title,
                 clues: []
              }
              
+             //Add every clue within a category to our database of clues
              var clues = shuffle(result.clues).splice(0,5).forEach((clue, index) => {
                 console.log(clue)
                 
+                //Create unique ID for this clue
                 var clueId = categoryIndex + "-" + index;
                 category.clues.push(clueId);
                 
+                //Add clue to DB
                 this.clues[clueId] = {
                    question: clue.question,
                    answer: clue.answer,
@@ -74,9 +83,11 @@ class TriviaGameShow {
                 };
              })
              
+             //Add this category to our DB of categories
              this.categories.push(category);
           });
           
+          //Render each category to the DOM
           this.categories.forEach((c) => {
              this.renderCategory(c);
           });
@@ -98,6 +109,7 @@ class TriviaGameShow {
           ul.innerHTML += `<li><button data-clue-id=${clueId}>${clue.value}</button></li>`
        })
        
+       //Add to DOM
        this.boardElement.appendChild(column);
     }
  
@@ -109,21 +121,28 @@ class TriviaGameShow {
     handleClueClick(event) {
        var clue = this.clues[event.target.dataset.clueId];
  
+       //Mark this button as used
        event.target.classList.add("used");
        
+       //Clear out the input field
        this.inputElement.value = "";
        
+       //Update current clue
        this.currentClue = clue;
  
+       //Update the text
        this.clueTextElement.textContent = this.currentClue.question;
        this.resultTextElement.textContent = this.currentClue.answer;
  
+       //Hide the result
        this.modalElement.classList.remove("showing-result");
        
+       //Show the modal
        this.modalElement.classList.add("visible");
        this.inputElement.focus();
     }
  
+    //Handle an answer from user
     handleFormSubmit(event) {
        event.preventDefault();
        
@@ -132,9 +151,11 @@ class TriviaGameShow {
           this.updateScore(this.currentClue.value);
        }
        
+       //Show answer
        this.revealAnswer(isCorrect);
     }
     
+    //Standardize an answer string so we can compare and accept variations
     cleanseAnswer(input="") {
        var friendlyAnswer = input.toLowerCase();
        friendlyAnswer = friendlyAnswer.replace("<i>", "");
@@ -149,11 +170,14 @@ class TriviaGameShow {
     
     revealAnswer(isCorrect) {
        
+       //Show the individual success/fail case
        this.successTextElement.style.display = isCorrect ? "block" : "none";
        this.failTextElement.style.display = !isCorrect ? "block" : "none";
        
+       //Show the whole result container
        this.modalElement.classList.add("showing-result");
        
+       //Disappear after a short bit
        setTimeout(() => {
           this.modalElement.classList.remove("visible");
        }, 3000);
@@ -161,8 +185,19 @@ class TriviaGameShow {
     
  }
  
- 
- 
+ function startGameOnClick() {
+    const startButton = document.getElementById("start-game-button");
+    const gameContainer = document.querySelector(".app");
+    const gameBoard = gameContainer.querySelector(".board"); // Select the game board container
+  
+    startButton.addEventListener("click", () => {
+      startButton.style.display = "none"; // Hide the button
+      gameContainer.style.display = "block"; // Show the game container
+    });
+  }
+  
+  // Call the function to set up the click event
+  startGameOnClick();
  
  function shuffle(a) {
      var j, x, i;
@@ -173,11 +208,9 @@ class TriviaGameShow {
          a[j] = x;
      }
      return a;
-    } 
-
+ } //https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+ 
+ //-------------------------------------------
  
  const game = new TriviaGameShow( document.querySelector(".app"), {});
  game.initGame();
- 
- 
-// Sources for help, Drew Conley on code pen.
